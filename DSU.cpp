@@ -50,7 +50,7 @@ int main()
 
     for (int i = 1; i <= n; i++)
     {
-        cout << "Root của " << i << " la: " << Find(i) << endl;
+        cout << "Root cua " << i << " la: " << Find(i) << endl;
     }
 
     return 0;
