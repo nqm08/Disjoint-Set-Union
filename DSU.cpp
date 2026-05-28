@@ -1,23 +1,23 @@
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
-const int MAXN = 1000;
+unordered_map<int, int> parent;
+unordered_map<int, int> sz;
 
-int parent[MAXN];
-int size[MAXN];
-
-void makeSet(int n)
+void makeSet(vector<int> nodes)
 {
-    for (int i = 1; i <= n; i++)
+    for (int x : nodes)
     {
-        parent[i] = i;
-        size[i] = 1;
+        parent[x] = x;
+        sz[x] = 1;
     }
 }
 
 int Find(int u)
 {
-    if (u == parent[u])
+    if (parent[u] == u)
         return u;
 
     return parent[u] = Find(parent[u]);
@@ -30,27 +30,28 @@ void Union(int a, int b)
 
     if (rootA != rootB)
     {
-        if (size[rootA] < size[rootB])
+        if (sz[rootA] < sz[rootB])
             swap(rootA, rootB);
 
         parent[rootB] = rootA;
-        size[rootA] += size[rootB];
+        sz[rootA] += sz[rootB];
     }
 }
 
 int main()
 {
-    int n = 5;
+    vector<int> nodes = {10, 20, 35, 100, 200};
 
-    makeSet(n);
+    makeSet(nodes);
 
-    Union(1, 2);
-    Union(2, 3);
-    Union(4, 5);
+    Union(10, 20);
+    Union(20, 35);
+    Union(100, 200);
 
-    for (int i = 1; i <= n; i++)
+    for (int x : nodes)
     {
-        cout << "Root cua " << i << " la: " << Find(i) << endl;
+        cout << "Dai dien cua " << x
+             << " la: " << Find(x) << endl;
     }
 
     return 0;
