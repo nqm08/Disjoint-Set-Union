@@ -50,8 +50,7 @@ int main()
 
     for (int x : nodes)
     {
-        cout << "Dai dien cua " << x
-             << " la: " << Find(x) << endl;
+        cout << "Root cua " << x << " la: " << Find(x) << endl;
     }
 
     return 0;
