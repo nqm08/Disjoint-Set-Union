@@ -6,8 +6,12 @@ using namespace std;
 unordered_map<int, int> parent;
 unordered_map<int, int> sz;
 
+int components;
+
 void makeSet(vector<int> nodes)
 {
+    components = nodes.size();
+
     for (int x : nodes)
     {
         parent[x] = x;
@@ -35,6 +39,8 @@ void Union(int a, int b)
 
         parent[rootB] = rootA;
         sz[rootA] += sz[rootB];
+
+        components--;
     }
 }
 
@@ -52,6 +58,9 @@ int main()
     {
         cout << "Root cua " << x << " la: " << Find(x) << endl;
     }
+
+    cout << "\nSo nhom hien tai: "
+         << components << endl;
 
     return 0;
 }
